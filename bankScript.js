@@ -127,16 +127,22 @@ function customGuiButton(event) {
         event.player.message(money + " Geld eingezahlt");    
     }
     else if(event.buttonId === 4) {  //definierte Menge einzahlen
-        var depositGui = event.API.createCustomGui(800, 278, 100, false);
-        depositGui.setBackgroundTexture("minecraft:textures/gui/container/bank.png");
+        var depositGui = event.API.createCustomGui(248, 248, 100, false);
+        depositGui.addTexturedRect(103, "minecraft:textures/gui/container/inventory.png", 3, 16, 250, 80, 0, 338);
+        //depositGui.setBackgroundTexture("minecraft:textures/gui/container/shulker_box.png");
+        /*
         for(var i = 0; i < 9; i++) {
             for(var k = 0; k < 3; k++) {
-                depositGui.addItemSlot(i * 18, k * 18 + 42, event.API.getIWorlds()[0].createItem("ordinarycoins:coinbronze", 0, 1));
+                depositGui.addItemSlot(i * 18, k * 18 + 42);
             }
         }
-        depositGui.addButton(101, "Einzahlen", 0, 150);
-        depositGui.showPlayerInventory(0, 200);
-        depositGui.update(event.player);
+        */
+        depositGui.addItemSlot(48, -13);
+        depositGui.addTexturedRect(102, "minecraft:textures/gui/widgets.png", 80, -50, 23, 23, 0, 22);
+        //depositGui.addButton(101, "Einzahlen", 0, 150);
+        depositGui.showPlayerInventory(-25, 51);
+        //depositGui.update(event.player);
+        event.player.showCustomGui(depositGui);
     }
     else if(event.buttonId === 5) {
     
@@ -144,4 +150,8 @@ function customGuiButton(event) {
     else if(event.buttonId === 101) {
         event.player.message("Geld eingezahlt");
     }
+}
+
+function customGuiSlot(event) {
+    event.player.message(event);
 }
