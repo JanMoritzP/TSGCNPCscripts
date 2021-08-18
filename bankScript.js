@@ -81,7 +81,8 @@ function customGuiButton(event) {
                 
                 }
                 else {  //bronze
-                    event.player.giveItem(createCoins("bronze",  coins,event));
+                    event.player.giveItem(createCoins("bronze",money ,event));
+                    money = 0;
                 }
             }
             else break;
@@ -126,17 +127,21 @@ function customGuiButton(event) {
         event.player.message(money + " Geld eingezahlt");    
     }
     else if(event.buttonId === 4) {  //definierte Menge einzahlen
-        var depositGui = event.API.createCustomGui(100, 300, 100, false);
-        depositGui.setBackgroundTexture("minecraft:texture/MinecraftInventoryBackground.jpg");
-        for(var i = 0; i < 8; i++) {
+        var depositGui = event.API.createCustomGui(800, 278, 100, false);
+        depositGui.setBackgroundTexture("minecraft:textures/gui/container/bank.png");
+        for(var i = 0; i < 9; i++) {
             for(var k = 0; k < 3; k++) {
-                depositGui.addItemSlot(i * 20, k * 20);
+                depositGui.addItemSlot(i * 18, k * 18 + 42, event.API.getIWorlds()[0].createItem("ordinarycoins:coinbronze", 0, 1));
             }
         }
         depositGui.addButton(101, "Einzahlen", 0, 150);
+        depositGui.showPlayerInventory(0, 200);
         depositGui.update(event.player);
     }
     else if(event.buttonId === 5) {
     
+    }
+    else if(event.buttonId === 101) {
+        event.player.message("Geld eingezahlt");
     }
 }
